@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class HelloWorld{
+
+    public static void main(String []a)
+    {
+        printchar("javahaha");
+       
+    }
+    public static void printchar(String str){
+        if(str==null)
+        {
+            System.out.println("Null string");
+            return;
+        }
+        if(str.length()==1)
+        {
+            System.out.println("single length string");
+            return;
+        }
+        if(str.isEmpty())
+        {
+            System.out.println("Empty string");
+            return;
+        }
+        
+        // step 1 is to convert the string into character array
+        char words[] = str.toCharArray();
+        
+        //maintain hashmap<key, value>
+        Map<Character, Integer> charMap = new HashMap<Character, Integer>();
+        
+        for(Character ch : words )
+        {
+            if(charMap.containsKey(ch)){
+                charMap.put(ch, charMap.get(ch)+1);
+            }else{
+                charMap.put(ch,1);
+            }
+        }
+        
+        //print the map
+        Set<Map.Entry<Character, Integer>> entrySet = charMap.entrySet();
+        for(Map.Entry<Character,Integer> entry : entrySet)
+        {
+            if(entry.getValue()>1)
+            {
+                System.out.println(entry.getKey() + " : " + entry.getValue());
+            }
+        }
+    }
+}
